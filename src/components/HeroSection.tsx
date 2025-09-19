@@ -1,7 +1,17 @@
+"use client";
 import { Button } from '@/components/ui/button';
 import { ShoppingBasket, Leaf, Truck } from 'lucide-react';
+import { TypewriterEffectSmooth } from './ui/typewriter-effect';
 
 export const HeroSection = () => {
+  const words = [
+  {
+    text: "Delivered",
+  },
+  {
+    text: "Daily",
+  },
+];
   return (
     <section className="relative min-h-[60vh] bg-green-400 flex items-center justify-center text-white">
       <div className="absolute inset-0 bg-[url('/hero-farm.jpg')] bg-cover bg-center opacity-50"></div>
@@ -9,10 +19,12 @@ export const HeroSection = () => {
         <h1 className="text-5xl mt-4 md:text-6xl font-bold mb-6 leading-tight">
           Fresh Farm Produce
           <br />
-          <span className="text-green-300">Delivered Daily</span>
+          <span className="text-green-300">
+            <TypewriterEffectSmooth words={words} />
+          </span>
         </h1>
         <p className="text-xl mb-8 opacity-100 max-w-2xl mx-auto">
-          Get the freshest organic crops straight from local farms to your table. 
+          
           Premium quality vegetables, fruits, and grains at unbeatable prices.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">

@@ -1,3 +1,4 @@
+"use client";
 import { ShoppingCartSheet } from './ShoppingCart';
 import { Leaf } from 'lucide-react';
 

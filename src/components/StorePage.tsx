@@ -1,3 +1,4 @@
+"use client";
 import { ProductCard } from './ProductCard';
 import { HeroSection } from './HeroSection';
 import { Header } from './Header';
