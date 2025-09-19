@@ -19,7 +19,7 @@ It helps farmers, sellers, and buyers connect in a simple, user-friendly platfor
 
 ### Clone the repository
 ```
-git clone https://github.com/your-username/farmproduce.git
+git clone https://github.com/mercie-ux/farmproduce.git
 cd farmproduce
 
 ```
