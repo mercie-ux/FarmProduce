@@ -4,17 +4,25 @@ import { HeroSection } from './HeroSection';
 import { Header } from './Header';
 import { products } from '@/data/products';
 import { CartProvider } from '@/contexts/CartContext';
+import { useScrollAnimation } from '@/hooks/useViewport';
+import { FeatureCard } from './FeatureCard';
 
 export const StorePage = () => {
+  const [sectionRef, sectionVisible] = useScrollAnimation({ threshold: 0.2, triggerOnce: true, rootMargin: "0px" });
   return (
     <CartProvider>
       <div className="min-h-screen bg-background">
+      
         <Header />
         <HeroSection />
         
         <main className="container mx-auto px-6 py-12">
           <section id="products" className="mb-16">
-            <div className="text-center mb-10">
+            <div 
+              ref={sectionRef}
+              className={`text-center mb-10 transform transition-all duration-700 ${
+                sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 Fresh Produce Selection
               </h2>
@@ -24,8 +32,8 @@ export const StorePage = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map(product => (
-                <ProductCard key={product.id} product={product} />
+              {products.map((product, index) => (
+                <ProductCard key={product.id} product={product} delay={index * 100} />
               ))}
             </div>
           </section>
@@ -34,34 +42,26 @@ export const StorePage = () => {
             <div className="bg-gradient-fresh rounded-2xl p-12 text-white bg-green-600">
               <h3 className="text-3xl font-bold mb-6">Why Choose FarmProduce?</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
-                <div>
-                  <h4 className="text-xl font-semibold mb-3">Farm to Table</h4>
-                  <p className="opacity-90">
-                    We work directly with local organic farms to bring you the freshest produce, 
-                    harvested at peak ripeness and delivered within 24 hours.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-3">Sustainable Practices</h4>
-                  <p className="opacity-90">
-                    All our partner farms use sustainable, eco-friendly farming methods that 
-                    protect the environment while producing the highest quality crops.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-3">Quality Guarantee</h4>
-                  <p className="opacity-90">
-                    Every item is hand-selected and quality checked before delivery. 
-                    We guarantee freshness or your money back.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-3">Community Support</h4>
-                  <p className="opacity-90">
-                    By choosing us, you're supporting local farmers and contributing to 
-                    a more sustainable food system in your community.
-                  </p>
-                </div>
+                <FeatureCard
+                  title="Farm to Table"
+                  description="We work directly with local organic farms to bring you the freshest produce, harvested at peak ripeness and delivered within 24 hours."
+                  delay={0}
+                />
+                <FeatureCard
+                  title="Sustainable Practices"
+                  description="All our partner farms use sustainable, eco-friendly farming methods that protect the environment while producing the highest quality crops."
+                  delay={100}
+                />
+                <FeatureCard
+                  title="Quality Guarantee"
+                  description="Every item is hand-selected and quality checked before delivery. We guarantee freshness or your money back."
+                  delay={200}
+                />
+                <FeatureCard
+                  title="Community Support"
+                  description="By choosing us, you're supporting local farmers and contributing to a more sustainable food system in your community."
+                  delay={300}
+                />
               </div>
             </div>
           </section>
